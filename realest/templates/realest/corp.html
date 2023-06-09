@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="{% static 'realest/jquery-3.6.4.min.js' %}"
+      type="text/javascript"
+    ></script>
+
+    <title>{{ head }}</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'realest/style.css' %}" />
+  </head>
+  <style>
+    .neex{
+      display: flex;
+    }
+    .floor {
+      width: 25%;
+    }
+    @media screen and (max-width: 800px) {
+      .floor {
+        width: 50%;
+      }
+      .neex{
+        display: block;
+      }
+    }
+  </style>
+  <body>
+    <nav class="sidebar bg-dark">
+      <center>
+        <img
+          src="{% static 'realest/logo.png' %}"
+          class="bg-white p-3 rounded shadow-lg mt-3"
+          width="170px"
+        />
+      </center>
+      <hr />
+      <div class="p-0">
+        <ul class="menu-sidebar fs-5 p-0 text-light">
+          <li
+            class="ps-2 fs-5 li py-1 text-black"
+            
+          >
+            <a href="/" class="text-decoration-none text-white"
+              ><i class="fa fa-home" aria-hidden="true"></i>
+              <span class="s-txt fw-bold ps-2" style="font-size: 18px"
+                >Home</span
+              ></a
+            >
+          </li>
+
+          <li
+            class="ps-2 fs-5 li py-1 "
+            
+          >
+            <a href="/agent/dashboard" class="text-decoration-none text-white"
+              ><i
+                class="fa fa-tachometer pe-1"
+                
+                aria-hidden="true"
+              ></i
+              ><span class="s-txt fw-bold ps-2" style="font-size: 18px"
+                >Dashboard</span
+              ></a
+            >
+          </li>
+
+          <li class="nav-link li" style="background-color: rgb(233, 236, 239)">
+            <button
+              class="btn btn-toggle d-block align-items-center rounded border-0 collapsed text-black fw-normal"
+              data-bs-toggle="collapse"
+              data-bs-target="#home-collapse"
+              aria-expanded="false"
+            >
+              <i class="fa fa-plus" aria-hidden="true"></i
+              ><span class="s-txt ps-3 fw-bold" style="font-size: 18px"
+                >Add Property</span
+              >
+            </button>
+            <div class="collapse under" id="home-collapse">
+              <div class="text-left">
+                <ul
+                  class="list-unstyled fw-normal pb-1 small mt-2 text-left lh-3 mx-4 text-black"
+                  style="text-align: left; font-size: 15px"
+                >
+                  <li class="text-left fw-normal my-1">
+                    <a
+                      href="residential"
+                      class="text-decoration-none text-black"
+                      >Residential</a
+                    >
+                  </li>
+                  <li class="text-left fw-normal my-1">
+                    <a href="commercial" class="text-decoration-none text-black"
+                      >Commercial</a
+                    >
+                  </li>
+                  <li class="text-left fw-normal my-1">
+                    <a href="land" class="text-decoration-none text-black"
+                      >Land</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <main class="main-content bg-body-secondary mb-4">
+      <div class="text-center text-grey">
+        <h1 id="head" class="text-capitalize">{{ head }}</h1>
+      </div>
+        <div class="rounded mt-4 ms-3 p-">
+          <form method="post" action="{{ head }}?for={{ head }}&user={{ user.username }}" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <div class="neex justify-content-between my-2">
+              <div
+                class="btn-group"
+                role="group"
+                aria-label="Basic radio toggle button group"
+              >
+                <input
+                  type="radio"
+                  class="btn-check"
+                  name="btnradior"
+                  id="sellr"
+                  onclick="prsho()"
+                  value="sell"
+                  autocomplete="off"
+                  checked
+                />
+                <label class="btn btn-outline-primary" for="sellr">Sell</label>
+
+                <input
+                  type="radio"
+                  class="btn-check"
+                  name="btnradior"
+                  id="rentr"
+                  onclick="rentshow()"
+                  value="rent"
+                  autocomplete="off"
+                />
+                <label class="btn btn-outline-primary" for="rentr">Rent</label>
+              </div>
+            </div>
+            <div class="d-block">
+              <input
+                type="number"
+                name="area"
+                class="form-control  my-3"
+                placeholder="Area"
+                required
+              />
+
+              <div
+              class="btn-group m-3 d-block"
+              role="group"
+              id="corporate"
+              aria-label="Basic radio toggle button group"
+            >
+              <input
+                type="radio"
+                class="btn-check"
+                name="btnradio"
+                id="btnradio5"
+                value="shop"
+                autocomplete="off"
+                checked
+              />
+              <label class="btn btn-outline-primary" for="btnradio5"
+                >Shop</label
+              >
+
+              <input
+                type="radio"
+                class="btn-check"
+                name="btnradio"
+                id="btnradio6"
+                value="showroom"
+                autocomplete="off"
+              />
+              <label class="btn btn-outline-primary" for="btnradio6"
+                >Showroom</label
+              >
+
+              <input
+                type="radio"
+                class="btn-check"
+                name="btnradio"
+                id="btnradio7"
+                value="office"
+                autocomplete="off"
+              />
+              <label class="btn btn-outline-primary" for="btnradio7"
+                >Office</label
+              >
+
+              <input
+                type="radio"
+                class="btn-check"
+                name="btnradio"
+                id="btnradio8"
+                value="warehouse"
+                autocomplete="off"
+              />
+              <label class="btn btn-outline-primary" for="btnradio8"
+                >Warehouse</label
+              >
+            </div>
+              </div>
+
+            <div class=" my-2 w-100  neex">
+              <input
+                type="number"
+                name="floor"
+                class="form-control floor"
+                placeholder="On Floor"
+                required
+              />
+
+              <input
+                type="number"
+                name="tfloor"
+                class="form-control floor ms-2"
+                placeholder="Top Floor"
+                required
+              />
+            </div>
+
+            <div class=" w-100 my-2  neex">
+              <span class="input-group-text p-0 " id="basic-addon1">
+                <input
+                  type="number"
+                  name="price"
+                  id="price"
+                  pattern="^\d*(\.\d{0,2})?$"
+                  class="form-control"
+                  placeholder="Price"
+                  required
+              /></span>
+              <span id="deposite" style="display: none;margin-left: 2%;">
+                <span class="input-group-text p-0 " id="basic-addon1">
+                  <a
+                    href="#"
+                    data-toggle="tooltip"
+                    data-placement="top"
+                    title="Deposite"
+                  >
+                    <i class="fa fa-info px-2"></i
+                  ></a>
+                  <input
+                type="text"
+                value="0"
+                name="bhk"
+                required
+                class="form-control w-25 ms-4 d-none"
+                placeholder="Owner's email"
+              />
+
+                  <input
+                    type="number"BNM,L
+                    name="deposite"
+                    required
+                    value="0"
+                    pattern="^\d*(\.\d{0,2})?$"
+                    class="form-control"
+                    placeholder="Security " /></span
+              ></span>
+            </div>
+            <span class="input-group-text w-100 my-2 floor" id="basic-addon1">
+              <a
+                href="#"
+                data-toggle="tooltip"
+                data-placement="top"
+                title="Enter Building Name"
+              >
+                <i class="fa fa-info px-2"></i
+              ></a>
+
+              <input
+                type="text"
+                name="project"
+                required
+                class="form-control"
+                placeholder="Project name"
+              />
+            </span>
+
+            
+            <textarea
+              type="text"
+              class="form-control w-100 my-2 text-left"
+              placeholder="Description"
+              name="desc"
+              style="height: 100px"
+              style="overflow-y: scroll"
+            ></textarea>
+            
+           
+              <input
+                type="text"
+                name="location"
+                class="form-control w-100 my-2"
+                placeholder="Location of Property "
+                required
+                style="width: 560px"
+              />
+              <input
+              type="file"
+              name="img"
+              class="form-control w-100 my-2"
+              
+            />
+
+            <input
+              type="text"
+              name="city"
+              class="form-control w-100 my-2"
+              placeholder="City"
+              required
+            />
+            <br/>
+            
+            <span class="d-flex justify-content-center my-3">
+
+              <button type="submit" name="submit" class="btn text-light btn-success rounded-pill w-75  p-3">
+              Post
+            </button>
+            </span>
+            
+            
+            
+          </form>
+  
+      </div>
+    </main>
+  </body>
+</html>
+<script>
+  $(document).ready(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+  });
+
+  const price = document.getElementById("price");
+  price.innerHTML = price.innerHTML.toLocaleString("en-IN");
+  const dept = document.getElementById("deposite");
+  function rentshow() {
+    dept.style.display = "block";
+    price.placeholder = "Rent";
+  }
+  function prsho() {
+    dept.style.display = "none";
+    price.placeholder = "Price";
+  }
+</script>

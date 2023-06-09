@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% load static %}
+        
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Login Page</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+          crossorigin="anonymous"
+        ></script>
+        <script
+          src="{% static 'realest/jquery-3.6.4.min.js' %}"
+          type="text/javascript"
+        ></script>
+        <link
+          rel="canonical"
+          href="https://getbootstrap.com/docs/5.3/utilities/background/"
+        />
+        <title>Login</title>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+        />
+        <link
+          rel="stylesheet"
+          type="text/css"
+          href="{% static 'realest/style.css' %}"
+        />
+      </head>
+<body class="" style="font-size: smaller;">
+    
+<!-- Pills navs -->
+<section class="vh-100" style="background-color: #508bfc;">
+    <div class="container py-4 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-8 col-md-4 col-lg-8 col-xl-6">
+          <div class="card shadow-2-strong" style="border-radius: 1rem;">
+            <div class="card-body px-5 pb-5 shadow">
+              <p class="bg-{{ color }}-subtle text-{{ color }} text-center rounded w-100 p-2 mb-3">{{ msg }}</p>
+  
+              <h3 class="mb-5">Sign in</h3>
+              <form action="#" method="post">
+                {% csrf_token %}
+              
+              <div class="form-outline mb-4">
+                <label class="form-label ms-1 fw-bold" style='text-align: left;' for="typeEmailX-2">Username</label>
+                <input type="text" name="name" placeholder="Abc" id="typeEmailX-2" class="form-control form-control-lg" style="font-size: smaller;"/>
+                
+              </div>
+  
+              <div class="form-outline ">
+                <label class="form-label ms-1 fw-bold" for="password">Password</label>
+                <input type="password" name="password" placeholder="Abc@123" id="pass" class="form-control form-control-lg" style="font-size: smaller;"/>
+                
+              </div>
+              <div class="form-check mb-4 mt-1 ">
+                <input class="form-check-input" type="checkbox" onclick="showpass()" >
+                <label class="form-check-label" for="showpass">
+                  Show Password
+                </label>
+              </div>
+  
+
+  
+              <input class="btn btn-primary rounded-pill w-100 p-2 fw-bold" type="submit" style="font-size: small;" value='Login'>
+            </form>
+              <a href="register"><button class="mt-3 btn btn-outline-primary rounded-pill w-100 p-2 fw-bold"  style="font-size: small;">Register</button></a>
+            
+            
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Pills content -->
+</body>
+</html>
+<script>
+function showpass() {
+  var x = document.getElementById("pass");
+  if (x.type === "password") {
+      x.type = "text";
+  } else {
+      x.type = "password";
+  }
+}
+</script>
